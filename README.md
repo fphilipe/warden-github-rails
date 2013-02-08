@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/warden-github-rails.png)](http://badge.fury.io/rb/warden-github-rails)
 [![Code Climate](https://codeclimate.com/github/fphilipe/warden-github-rails.png)](https://codeclimate.com/github/fphilipe/warden-github-rails)
 
-**WORK IN PROCESS** --- The content in this README might not be implemented yet.
+**WORK IN PROGRESS** --- The content in this README might not be implemented yet.
 
 A gem for rails that provides easy GitHub OAuth integration.
 It is built on top of [warden-github](https://github.com/atmos/warden-github), which gives you an easy to use [warden](https://github.com/hassox/warden) strategy to authenticate GitHub users.
