@@ -7,6 +7,7 @@ end
 require 'rack/test'
 
 # Load the test rails app:
+ENV['RAILS_ENV'] ||= 'test'
 require 'rails_app/config/environment'
 
 # Setup configs needed to run:

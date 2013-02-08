@@ -6,4 +6,6 @@ RailsApp::Application.routes.draw do
   github_authenticate(:admin)    { get '/admin/protected'           => 'application#show' }
   github_authenticated(:admin)   { get '/admin/conditional'         => 'application#show' }
   github_unauthenticated(:admin) { get '/admin/conditional_inverse' => 'application#show' }
+
+  match '*all' => lambda { |env| [404, {}, []] }
 end
