@@ -4,6 +4,9 @@ module Warden
   module GitHub
     module Rails
       module Config
+        # A cache of the warden config for the active manager.
+        mattr_accessor :warden_config
+
         # Default scope to use when not explicitly specified.
         mattr_accessor :default_scope
         @@default_scope = :user
