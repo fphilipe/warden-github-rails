@@ -8,7 +8,7 @@ describe 'request to a protected resource' do
   end
 
   context 'when logged in' do
-    before { login_as 'github user' }
+    before { github_login }
     it { should be_ok }
   end
 
@@ -16,12 +16,12 @@ describe 'request to a protected resource' do
     subject { get '/admin/protected' }
 
     context 'when logged in in the wrong scope' do
-      before { login_as 'github user' }
+      before { github_login }
       it { should be_github_oauth_redirect }
     end
 
     context 'when logged in in the correct scope' do
-      before { login_as 'github user', :scope => :admin }
+      before { github_login(:admin) }
       it { should be_ok }
     end
   end
@@ -35,7 +35,7 @@ describe 'request to a resource that only exists when logged in' do
   end
 
   context 'when logged in' do
-    before { login_as 'github user' }
+    before { github_login }
     it { should be_ok }
   end
 
@@ -43,12 +43,12 @@ describe 'request to a resource that only exists when logged in' do
     subject { get '/admin/conditional' }
 
     context 'when logged in in the wrong scope' do
-      before { login_as 'github user' }
+      before { github_login }
       it { should be_not_found }
     end
 
     context 'when logged in in the correct scope' do
-      before { login_as 'github user', :scope => :admin }
+      before { github_login(:admin) }
       it { should be_ok }
     end
   end
@@ -62,7 +62,7 @@ describe 'request to a resource that only exists when logged out' do
   end
 
   context 'when logged in' do
-    before { login_as 'github user' }
+    before { github_login }
     it { should be_not_found }
   end
 
@@ -70,12 +70,12 @@ describe 'request to a resource that only exists when logged out' do
     subject { get '/admin/conditional_inverse' }
 
     context 'when logged in in the wrong scope' do
-      before { login_as 'github user' }
+      before { github_login }
       it { should be_ok }
     end
 
     context 'when logged in in the correct scope' do
-      before { login_as 'github user', :scope => :admin }
+      before { github_login(:admin) }
       it { should be_not_found }
     end
   end
