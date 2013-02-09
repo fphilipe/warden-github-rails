@@ -14,3 +14,12 @@ module Warden
     end
   end
 end
+
+# Add a method to Rack::Response to easily determine if a request resulted in an
+# OAuth redirect to GitHub.
+class Rack::Response
+  def github_oauth_redirect?
+    redirect? and
+      location.start_with?('https://github.com/login/oauth/authorize')
+  end
+end
