@@ -3,10 +3,12 @@ require File.expand_path('../boot', __FILE__)
 require 'action_controller/railtie'
 require 'warden/github/rails'
 
-begin
-  require 'debugger'
-rescue LoadError
-  require 'ruby-debug'
+unless Rails.env.test?
+  begin
+    require 'debugger'
+  rescue LoadError
+    require 'ruby-debug'
+  end
 end
 
 module RailsApp
