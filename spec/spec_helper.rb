@@ -5,6 +5,7 @@ SimpleCov.start do
 end
 
 require 'rack/test'
+require 'warden/github/rails/test_helpers'
 
 # Load the test rails app:
 ENV['RAILS_ENV'] ||= 'test'
@@ -21,7 +22,7 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.include Rack::Test::Methods
-  config.include Warden::Test::Helpers
+  config.include Warden::GitHub::Rails::TestHelpers
 
   # Reset warden's login states after each test.
   config.after { Warden.test_reset! }
