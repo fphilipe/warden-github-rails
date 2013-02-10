@@ -7,6 +7,12 @@ require 'warden/github/rails/config'
 module Warden
   module GitHub
     module Rails
+      @@config = Config.new
+
+      def self.config
+        @@config
+      end
+
       # Use this method to setup this gem.
       #
       # @example
@@ -15,7 +21,7 @@ module Warden
       #     # ...
       #   end
       def self.setup
-        yield Config
+        yield config
       end
     end
   end

@@ -3,9 +3,12 @@ module Warden
     module Rails
       class Railtie < ::Rails::Railtie
         config.app_middleware.use Warden::Manager do |config|
-          Config.warden_config = config
           config.failure_app = lambda { |env| [403, {}, [env['warden'].message]] }
-          config.default_strategies :github
+          Rails.config.warden_config = config
+          Rails.config.scopes.each do |scope, scope_config|
+            config.scope_defaults scope, :strategies => [:github],
+                                         :config => scope_config
+          end
         end
       end
     end
