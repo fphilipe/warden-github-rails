@@ -4,37 +4,41 @@ module Warden
       module Routes
         # Enforces an authenticated GitHub user for the routes. If not
         # authenticated, it initiates the OAuth flow.
-        def github_authenticate(scope=Rails.default_scope)
-          constraint = lambda do |request|
-            request.env['warden'].authenticate!(:scope => scope)
-          end
-
-          constraints(constraint) do
-            yield
+        def github_authenticate(scope=nil, options={}, &routes_block)
+          github_constraint(scope, options, routes_block) do |warden, scope|
+            warden.authenticate!(:scope => scope)
           end
         end
 
         # The routes will only be visible to authenticated GitHub users. When
         # not authenticated, it does not initiate the OAuth flow.
-        def github_authenticated(scope=Rails.default_scope)
-          constraint = lambda do |request|
-            request.env["warden"].authenticated?(:scope => scope)
-          end
-
-          constraints(constraint) do
-            yield
+        def github_authenticated(scope=nil, options={}, &routes_block)
+          github_constraint(scope, options, routes_block) do |warden, scope|
+            warden.authenticated?(:scope => scope)
           end
         end
 
         # The routes will only be visible to all but authenticated GitHub users.
-        def github_unauthenticated(scope=Rails.default_scope)
+        def github_unauthenticated(scope=nil, options={}, &routes_block)
+          github_constraint(scope, options, routes_block) do |warden, scope|
+            not warden.authenticated?(:scope => scope)
+          end
+        end
+
+        private
+
+        def github_constraint(scope, options, routes_block, &block)
           constraint = lambda do |request|
-            not request.env["warden"].authenticated?(:scope => scope)
+            if block.call(request.env['warden'], scope || Rails.default_scope)
+              github_enforce_options(options)
+            end
           end
 
-          constraints(constraint) do
-            yield
-          end
+          constraints(constraint, &routes_block)
+        end
+
+        def github_enforce_options(options)
+          true
         end
       end
     end
