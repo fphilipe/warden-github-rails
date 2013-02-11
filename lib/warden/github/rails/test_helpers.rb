@@ -19,7 +19,7 @@ module Warden
 
         def initialize(*args)
           super
-          @memberships = { :team => [], :org => [], :org_public => [] }
+          @memberships = { :team => [], :org => [] }
         end
 
         def stub_membership(args)
@@ -34,10 +34,6 @@ module Warden
 
         def organization_member?(id)
           memberships[:org].include?(id)
-        end
-
-        def organization_public_member?(id)
-          memberships[:org_public].include?(id)
         end
       end
     end
