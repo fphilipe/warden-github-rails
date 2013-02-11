@@ -82,13 +82,31 @@ end
 
 describe 'request to a resource that only exists when logged in' do
   context 'that requires a team membership' do
-    context 'which is specified by the numeric team id' do
+    context 'which is specified by a numeric team id' do
       subject { get '/team/conditional' }
 
       context 'when team member' do
         before do
           user = github_login
           user.stub_membership(:team => 123)
+        end
+
+        it { should be_ok }
+      end
+
+      context 'when not team member' do
+        before { github_login }
+        it { should be_not_found}
+      end
+    end
+
+    context 'which is specified by a team alias' do
+      subject { get '/team_alias/conditional' }
+
+      context 'when team member' do
+        before do
+          user = github_login
+          user.stub_membership(:team => 456)
         end
 
         it { should be_ok }
