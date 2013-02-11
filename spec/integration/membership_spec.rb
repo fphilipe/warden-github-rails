@@ -53,3 +53,47 @@ describe 'request to a protected resource' do
     end
   end
 end
+
+describe 'request to a resource that only exists when logged in' do
+  context 'that requires a team membership' do
+    context 'which is specified by the numeric team id' do
+      subject { get '/team/conditional' }
+
+      context 'when team member' do
+        before do
+          user = github_login
+          user.stub_membership(:team => 123)
+        end
+
+        it { should be_ok }
+      end
+
+      context 'when not team member' do
+        before { github_login }
+        it { should be_not_found}
+      end
+    end
+  end
+
+  context 'that requires an organization membership' do
+    { :org => :foobar_inc, :organization => 'some_org' }.each do |key, value|
+      context "which is specified as #{key}" do
+        subject { get "/#{key}/conditional" }
+
+        context 'when organization member' do
+          before do
+            user = github_login
+            user.stub_membership(:org => value)
+          end
+
+          it { should be_ok }
+        end
+
+        context 'when not organization member' do
+          before { github_login }
+          it { should be_not_found }
+        end
+      end
+    end
+  end
+end
