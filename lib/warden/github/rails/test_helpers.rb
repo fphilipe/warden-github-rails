@@ -1,4 +1,4 @@
-require 'warden'
+require 'warden/github'
 
 module Warden
   module GitHub
@@ -6,10 +6,15 @@ module Warden
       module TestHelpers
         include ::Warden::Test::Helpers
 
-        # Login a mock GitHub user.
+        # Login a mock GitHub user and return it.
         def github_login(scope=Rails.default_scope)
-          login_as('github user', :scope => scope)
+          MockUser.new.tap do |user|
+            login_as(user, :scope => scope)
+          end
         end
+      end
+
+      class MockUser < ::Warden::GitHub::User
       end
     end
   end

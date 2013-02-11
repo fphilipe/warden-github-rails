@@ -22,5 +22,15 @@ describe Warden::GitHub::Rails::TestHelpers do
         github_login(:admin)
       end
     end
+
+    it 'logs in a mock user' do
+      should_receive(:login_as).with do |user, _|
+        user.should be_a Warden::GitHub::Rails::MockUser
+      end
+
+      user = github_login
+
+      user.should be_a Warden::GitHub::Rails::MockUser
+    end
   end
 end
