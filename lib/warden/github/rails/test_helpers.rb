@@ -1,4 +1,5 @@
 require 'warden/github'
+require 'warden/github/rails/test_helpers/mock_user'
 
 module Warden
   module GitHub
@@ -11,29 +12,6 @@ module Warden
           MockUser.new.tap do |user|
             login_as(user, :scope => scope)
           end
-        end
-      end
-
-      class MockUser < ::Warden::GitHub::User
-        attr_reader :memberships
-
-        def initialize(*args)
-          super
-          @memberships = { :team => [], :org => [] }
-        end
-
-        def stub_membership(args)
-          args.each do |key, value|
-            memberships.fetch(key) << value
-          end
-        end
-
-        def team_member?(id)
-          memberships[:team].include?(id)
-        end
-
-        def organization_member?(id)
-          memberships[:org].include?(id)
         end
       end
     end

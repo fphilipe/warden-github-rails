@@ -24,13 +24,16 @@ describe Warden::GitHub::Rails::TestHelpers do
     end
 
     it 'logs in a mock user' do
+      expected_user = nil
+
       should_receive(:login_as).with do |user, _|
-        user.should be_a Warden::GitHub::Rails::MockUser
+        expected_user = user
+        user.should be_a Warden::GitHub::Rails::TestHelpers::MockUser
       end
 
       user = github_login
 
-      user.should be_a Warden::GitHub::Rails::MockUser
+      user.should be expected_user
     end
   end
 end

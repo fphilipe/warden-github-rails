@@ -68,7 +68,8 @@ describe 'controller helpers' do
         context 'when logged in' do
           it 'returns the logged in user' do
             github_login(scope)
-            request.body.should include 'Warden::GitHub::Rails::MockUser'
+            request.body.
+              should include 'Warden::GitHub::Rails::TestHelpers::MockUser'
           end
         end
       end
