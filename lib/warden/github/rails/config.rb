@@ -34,6 +34,7 @@ module Warden
           teams[name.to_sym] = Integer(id)
         end
 
+        # Gets the team id for a team id or alias.
         def team_id(team)
           Integer(team)  rescue teams.fetch(team.to_sym)
         rescue IndexError
