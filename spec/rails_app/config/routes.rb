@@ -4,6 +4,8 @@ RailsApp::Application.routes.draw do
     404 => lambda { |env| [404, {}, ['not found']] }
   }
 
+  # Routes for route constraints tests:
+
   github_authenticate    { get '/protected'           => responses[200] }
   github_authenticated   { get '/conditional'         => responses[200] }
   github_unauthenticated { get '/conditional_inverse' => responses[200] }
@@ -23,6 +25,16 @@ RailsApp::Application.routes.draw do
 
   github_authenticate(:organization => 'some_org')  { get '/organization/protected'   => responses[200] }
   github_authenticated(:organization => 'some_org') { get '/organization/conditional' => responses[200] }
+
+  # Routes for controller helpers tests:
+
+  %w[ unscoped scoped ].each do |type|
+    %w[ authenticate logout authenticated user session ].each do |method|
+      get "/#{type}/#{method}" => "#{type}##{method}"
+    end
+  end
+
+  # Everything else should be a 404:
 
   match '*all' => responses[404]
 end

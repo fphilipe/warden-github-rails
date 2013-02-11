@@ -10,6 +10,12 @@ module Warden
                                          :config => scope_config
           end
         end
+
+        initializer 'warden-github-rails.controller_helpers' do
+          ActiveSupport.on_load(:action_controller) do
+            include ControllerHelpers
+          end
+        end
       end
     end
   end
