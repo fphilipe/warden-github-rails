@@ -37,7 +37,7 @@ module Warden
         def team_id(team)
           Integer(team)  rescue teams.fetch(team.to_sym)
         rescue IndexError
-          fail BadConfig, "No alias defined for team #{team}."
+          fail BadConfig, "No team id defined for team #{team}."
         end
       end
     end
