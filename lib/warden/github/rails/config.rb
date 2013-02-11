@@ -36,7 +36,13 @@ module Warden
 
         # Gets the team id for a team id or alias.
         def team_id(team)
-          Integer(team)  rescue teams.fetch(team.to_sym)
+          # In ruby 1.8 doing a Integer(:symbol) returns an integer. Thus, test
+          # for symbol first.
+          if team.is_a? Symbol
+            teams.fetch(team)
+          else
+            Integer(team)  rescue teams.fetch(team.to_sym)
+          end
         rescue IndexError
           fail BadConfig, "No team id defined for team #{team}."
         end
