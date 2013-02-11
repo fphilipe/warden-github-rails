@@ -15,6 +15,30 @@ module Warden
       end
 
       class MockUser < ::Warden::GitHub::User
+        attr_reader :memberships
+
+        def initialize(*args)
+          super
+          @memberships = { :team => [], :org => [], :org_public => [] }
+        end
+
+        def stub_membership(args)
+          args.each do |key, value|
+            memberships.fetch(key) << value
+          end
+        end
+
+        def team_member?(id)
+          memberships[:team].include?(id)
+        end
+
+        def organization_member?(id)
+          memberships[:org].include?(id)
+        end
+
+        def organization_public_member?(id)
+          memberships[:org_public].include?(id)
+        end
       end
     end
   end
