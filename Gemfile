@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-if ENV['DEBUG']
-  gem 'warden-github', :path => '../warden-github/'
+if ENV['EDGE']
+  gem 'warden-github', :github => 'atmos/warden-github'
 end
 
 unless ENV['CI']
