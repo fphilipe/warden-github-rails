@@ -16,7 +16,8 @@ module Warden
                      :default_scope,
                      :warden_config,
                      :warden_config=,
-                     :scopes
+                     :scopes,
+                     :team_id
 
       @config = Config.new
 

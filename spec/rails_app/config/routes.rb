@@ -15,6 +15,9 @@ RailsApp::Application.routes.draw do
   github_authenticate(:team => 123)  { get '/team/protected'   => responses[200] }
   github_authenticated(:team => 123) { get '/team/conditional' => responses[200] }
 
+  github_authenticate(:team => :marketing)  { get '/team_alias/protected'   => responses[200] }
+  github_authenticated(:team => :marketing) { get '/team_alias/conditional' => responses[200] }
+
   github_authenticate(:org => :foobar_inc)  { get '/org/protected'   => responses[200] }
   github_authenticated(:org => :foobar_inc) { get '/org/conditional' => responses[200] }
 
