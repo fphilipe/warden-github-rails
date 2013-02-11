@@ -28,17 +28,32 @@ module Warden
         private
 
         def github_constraint(scope, options, routes_block, &block)
+          options, scope = scope, nil  if scope.is_a? Hash
+          scope ||= Rails.default_scope
+
           constraint = lambda do |request|
-            if block.call(request.env['warden'], scope || Rails.default_scope)
-              github_enforce_options(options)
+            warden = request.env['warden']
+
+            if block.call(warden, scope)
+              if (user = warden.user(scope))
+                github_enforce_options(user, options)
+              else
+                true
+              end
             end
           end
 
           constraints(constraint, &routes_block)
         end
 
-        def github_enforce_options(options)
-          true
+        def github_enforce_options(user, options)
+          if (team = options[:team])
+            user.team_member?(team)
+          elsif (org = options[:org] || options[:organization])
+            user.organization_member?(org)
+          else
+            true
+          end
         end
       end
     end
