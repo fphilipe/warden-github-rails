@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/fphilipe/warden-github-rails.png)](https://travis-ci.org/fphilipe/warden-github-rails)
 [![Gem Version](https://badge.fury.io/rb/warden-github-rails.png)](http://badge.fury.io/rb/warden-github-rails)
+[![Dependency Status](https://gemnasium.com/fphilipe/warden-github-rails.png)](https://gemnasium.com/fphilipe/warden-github-rails)
 [![Code Climate](https://codeclimate.com/github/fphilipe/warden-github-rails.png)](https://codeclimate.com/github/fphilipe/warden-github-rails)
 
 **WORK IN PROGRESS** --- The content in this README might not be implemented yet.
