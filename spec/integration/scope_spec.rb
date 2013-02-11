@@ -2,7 +2,7 @@ require 'spec_helper'
 
 # Test if the configs in rails_app/config/initializers/warden_github_rails.rb
 # are actually being set and used by warden.
-describe 'request to custom configured spec', :focus do
+describe 'request to custom configured spec' do
   def test_redirect(url, args)
     request = get url
     params = Addressable::URI.parse(request.location).query_values
