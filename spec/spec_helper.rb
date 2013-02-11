@@ -8,6 +8,7 @@ end
 
 require 'rack/test'
 require 'warden/github/rails/test_helpers'
+require 'addressable/uri'
 
 # Load the test rails app:
 ENV['RAILS_ENV'] ||= 'test'
