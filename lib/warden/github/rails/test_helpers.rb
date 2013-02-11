@@ -7,7 +7,7 @@ module Warden
         include ::Warden::Test::Helpers
 
         # Login a mock GitHub user.
-        def github_login(scope=Rails.config.default_scope)
+        def github_login(scope=Rails.default_scope)
           login_as('github user', :scope => scope)
         end
       end

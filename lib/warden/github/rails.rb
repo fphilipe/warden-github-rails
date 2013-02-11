@@ -1,16 +1,27 @@
 require 'warden/github'
+
 require 'warden/github/rails/version'
 require 'warden/github/rails/routes'
 require 'warden/github/rails/railtie'
 require 'warden/github/rails/config'
 
+require 'forwardable'
+
 module Warden
   module GitHub
     module Rails
-      @@config = Config.new
+      extend SingleForwardable
+
+      def_delegators :config,
+                     :default_scope,
+                     :warden_config,
+                     :warden_config=,
+                     :scopes
+
+      @config = Config.new
 
       def self.config
-        @@config
+        @config
       end
 
       # Use this method to setup this gem.

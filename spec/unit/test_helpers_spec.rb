@@ -4,7 +4,7 @@ describe Warden::GitHub::Rails::TestHelpers do
   describe '#github_login' do
     context 'when no scope is specified' do
       it 'uses the default scope from config to login' do
-        Warden::GitHub::Rails.config.stub(:default_scope => :foobar)
+        Warden::GitHub::Rails.stub(:default_scope => :foobar)
         should_receive(:login_as).with do |_, opts|
           opts.fetch(:scope).should be :foobar
         end
