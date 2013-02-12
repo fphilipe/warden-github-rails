@@ -10,8 +10,10 @@ It is built on top of [warden-github](https://github.com/atmos/warden-github), w
 
 ## Motivation
 
-**Wouldn't it be nice to use your organization and it's teams for user access control?**  
-**Wouldn't it be nice to add a new employee to your GitHub organization or team in order to grant them access to your app's admin area?**
+**Wouldn't it be nice to**
+
+- use your organization and it's teams for user access control?
+- add a new employee to your GitHub organization or team in order to grant them access to your app's admin area?
 
 The motivation for this gem was to provide a very easy authorization (not authentication) mechanism to existing rails apps for admins, especially in combination with organization and team memberships.
 The provided routing helpers do exactly that.
