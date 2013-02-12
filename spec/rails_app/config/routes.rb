@@ -11,6 +11,7 @@ RailsApp::Application.routes.draw do
   github_unauthenticated { get '/conditional_inverse' => responses[200] }
 
   github_authenticate(:admin)    { get '/admin/protected'           => responses[200] }
+  github_authenticate(:admin)    { get '/admin/login/callback'      => redirect('/admin/protected') }
   github_authenticated(:admin)   { get '/admin/conditional'         => responses[200] }
   github_unauthenticated(:admin) { get '/admin/conditional_inverse' => responses[200] }
 
