@@ -27,6 +27,14 @@ RailsApp::Application.routes.draw do
   github_authenticate(:organization => 'some_org')  { get '/organization/protected'   => responses[200] }
   github_authenticated(:organization => 'some_org') { get '/organization/conditional' => responses[200] }
 
+  github_authenticated(:org => lambda { |req| req.params[:id] }) do
+    get '/dynamic_org/:id' => responses[200]
+  end
+
+  github_authenticated(:team => lambda { |req| req.params[:id] }) do
+    get '/dynamic_team/:id' => responses[200]
+  end
+
   # Routes for controller helpers tests:
 
   %w[ unscoped scoped ].each do |type|

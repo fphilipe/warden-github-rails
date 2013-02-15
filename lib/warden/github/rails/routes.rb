@@ -45,7 +45,8 @@ module Warden
 
             if block.call(warden, scope)
               if (user = warden.user(scope))
-                github_enforce_options(user, options)
+                evaled_options = github_eval_options(options, request)
+                github_enforce_options(user, evaled_options)
               else
                 true
               end
@@ -63,6 +64,16 @@ module Warden
           else
             true
           end
+        end
+
+        def github_eval_options(options, request)
+          Hash[options.map { |k,v|
+            if v.is_a?(Proc)
+              [k, v.call(request)]
+            else
+              [k, v]
+            end
+          }]
         end
       end
     end

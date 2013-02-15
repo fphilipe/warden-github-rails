@@ -125,6 +125,11 @@ end
 github_authenticated(:team => 'markting') do
   get '/dashboard' => 'dashboard#show'
 end
+
+# Using dynamic membership values:
+github_authenticate(:org => lambda { |req| r.params[:id] }) do
+  get '/orgs/:id' => 'orgs#show'
+end
 ```
 
 ### Inside a Controller

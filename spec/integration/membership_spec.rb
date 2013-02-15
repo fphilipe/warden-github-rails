@@ -49,6 +49,26 @@ describe 'request to a protected resource' do
         end
       end
     end
+
+    context 'which is specified by a lambda' do
+      subject { get '/dynamic_team/123' }
+
+      context 'when logged in' do
+        context 'and team member' do
+          before do
+            user = github_login
+            user.stub_membership(:team => 123)
+          end
+
+          it { should be_ok }
+        end
+
+        context 'and not team member' do
+          before { github_login }
+          it { should be_not_found}
+        end
+      end
+    end
   end
 
   context 'that requires an organization membership' do
@@ -74,6 +94,26 @@ describe 'request to a protected resource' do
             before { github_login }
             it { should be_not_found }
           end
+        end
+      end
+    end
+
+    context 'which is specified by a lambda' do
+      subject { get '/dynamic_org/some_org' }
+
+      context 'when logged in' do
+        context 'and organization member' do
+          before do
+            user = github_login
+            user.stub_membership(:org => 'some_org')
+          end
+
+          it { should be_ok }
+        end
+
+        context 'and not organization member' do
+          before { github_login }
+          it { should be_not_found}
         end
       end
     end
