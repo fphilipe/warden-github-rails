@@ -15,6 +15,10 @@ module Warden
           ActiveSupport.on_load(:action_controller) do
             include ControllerHelpers
           end
+
+          ActiveSupport.on_load(:action_view) do
+            include ViewHelpers
+          end
         end
       end
     end

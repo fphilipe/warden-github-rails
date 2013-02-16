@@ -5,6 +5,7 @@ require 'warden/github/rails/routes'
 require 'warden/github/rails/railtie'
 require 'warden/github/rails/config'
 require 'warden/github/rails/controller_helpers'
+require 'warden/github/rails/view_helpers'
 
 require 'forwardable'
 
