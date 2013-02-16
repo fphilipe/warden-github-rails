@@ -1,0 +1,26 @@
+<h2><%= @team.name %></h2>
+
+<h3>Repositories</h3>
+<%- if @repos.empty? -%>
+<p>Looks like there are no repos in this team :-(</p>
+<%- else -%>
+<dl>
+  <%- @repos.each do |repo| -%>
+  <dt><%= link_to repo.name, repo.html_url %></dt>
+  <dd><%= repo.description %></dd>
+  <%- end -%>
+</dl>
+<%- end -%>
+
+<h3>Members</h3>
+<%- if @members.empty? -%>
+<p>Looks like there are no members in this team :-(</p>
+<%- end -%>
+<ul>
+  <%- @members.each do |member| -%>
+  <li>
+    <%= image_tag member.avatar_url, :width => 25, :height => 25 %>
+    <%= link_to member.login, user_path(member.login) %>
+  </li>
+  <%- end -%>
+</ul>

@@ -1,0 +1,28 @@
+<h2>
+  <%= image_tag @user.avatar_url, :width => 50, :height => 50 %>
+  <%= @user.login %>
+  <%- if @user.name.present? %>
+  (<%= @user.name %>)
+  <%- end -%>
+</h2>
+
+<dl>
+  <dt>Company:</dt>
+  <dd><%= @user.company %></dd>
+  <dt>Website:</dt>
+  <dd><%= @user.blog %><dd>
+  <dt>Bio:</dt>
+  <dd><%= @user.bio %><dd>
+</dl>
+
+<h3>Repositories</h3>
+<%- if @repos.empty? -%>
+<p>Looks like this user has no repos :-(</p>
+<%- else -%>
+<dl>
+  <%- @repos.each do |repo| -%>
+  <dt><%= link_to repo.name, repo.html_url %></dt>
+  <dd><%= repo.description %></dd>
+  <%- end -%>
+</dl>
+<%- end -%>

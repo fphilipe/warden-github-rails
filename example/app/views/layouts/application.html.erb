@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example App</title>
+    <style type="text/css">
+      html {
+        font: 1em / 1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background: #efefef;
+      }
+
+      h1 {
+        font-size: 3em;
+        text-align: center;
+      }
+
+      hr {
+        border-top: 1px solid #333;
+      }
+
+      nav {
+        text-align: center;
+      }
+
+      nav li, nav ul {
+        display: inline;
+        list-style: none;
+        padding: 0;
+      }
+
+      nav li::before {
+        content: ' | ';
+        padding: 0 0.5em;
+      }
+
+      nav li:first-child::before {
+        content: none;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 54em;
+        background: white;
+        padding: 1em 2em;
+        margin: 1em auto;
+      }
+
+      img {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Example App</h1>
+
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Organizations', orgs_path %></li>
+        <li><%= link_to 'Profile', profile_path %></li>
+        <%- if github_authenticated? %>
+          <li><%= link_to "Logout (#{github_user.name})", logout_path %></li>
+        <%- else -%>
+          <li><%= link_to 'Login', login_path %></li>
+        <%- end -%>
+      </ul>
+    </nav>
+
+    <div class='container'>
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

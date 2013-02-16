@@ -1,0 +1,14 @@
+<h2>Your Organizations</h2>
+
+<%- if @orgs.empty? -%>
+<p>Looks like you are not a member of any organization :-(</p>
+<%- else -%>
+<ul>
+  <%- @orgs.each do |org| -%>
+  <li>
+    <%= image_tag org.avatar_url, :width => 25, :height => 25 %>
+    <%= link_to org.login, org_path(org.login) %>
+  </li>
+  <%- end -%>
+</ul>
+<%- end -%>

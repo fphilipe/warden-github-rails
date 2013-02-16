@@ -1,0 +1,38 @@
+<h2>
+  <%= image_tag @org.avatar_url, :width => 50, :height => 50 %>
+  <%= @org.login %>
+</h2>
+
+<h3>Repositories</h3>
+<%- if @repos.empty? -%>
+<p>Looks like there are no repos in this organization :-(</p>
+<%- else -%>
+<dl>
+  <%- @repos.each do |repo| -%>
+  <dt><%= link_to repo.name, repo.html_url %></dt>
+  <dd><%= repo.description %></dd>
+  <%- end -%>
+</dl>
+<%- end -%>
+
+<h3>Teams</h3>
+
+<%- if @teams.empty? -%>
+<p>Looks like there are no teams :-(</p>
+<%- else -%>
+<ul>
+  <%- @teams.each do |team| -%>
+  <li><%= link_to team.name, team_path(team.id) %></li>
+  <%- end -%>
+</ul>
+<%- end -%>
+
+<h3>Members</h3>
+<ul>
+  <%- @members.each do |member| -%>
+  <li>
+    <%= image_tag member.avatar_url, :width => 25, :height => 25 %>
+    <%= link_to member.login, user_path(member.login) %>
+  </li>
+  <%- end -%>
+</ul>
