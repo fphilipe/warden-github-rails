@@ -11,10 +11,8 @@ Gem::Specification.new do |gem|
   gem.description   = gem.summary
   gem.homepage      = 'https://github.com/fphilipe/warden-github-rails'
 
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.files         = `git ls-files`.split($/) - Dir.glob('example/**/*')
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ['lib']
 
   gem.add_development_dependency 'rspec', '~> 2.12'
   gem.add_development_dependency 'simplecov'
