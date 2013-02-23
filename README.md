@@ -167,9 +167,16 @@ end
 
 Once a user is logged in, you'll have access to it in the controller using `github_user`. It is an instance of `Warden::GitHub::User` which is defined in the [warden-github](https://github.com/atmos/warden-github/blob/master/lib/warden/github/user.rb) gem. The instance has several methods to access user information such as `#name`, `#id`, `#email`, etc. It also features a method `#api` which returns a preconfigured [Octokit](https://github.com/pengwynn/octokit) client for that user.
 
-## Known Limitations
+## Using alongside Devise and other Warden Gems
 
-Currently, this gem does not play nicely with [Devise](https://github.com/plataformatec/devise). Devise is built on top of warden and performs some monkeypatching of warden which breaks this gem. Support will be added as soon as possible.
+Currently this gem does not play nicely with other gems that setup a warden middleware.
+The reason is that warden does not have support for multiple middlewares.
+The warden middleware simply configures a warden instance and adds it to the environment.
+Any other warden middleware downstream checks for an upstream warden instance and skips itself if present.
+I've opened an [issue](https://github.com/hassox/warden/issues/67) on the warden repository to discuss possible workarounds.
+
+Apart from the problem with warden, this gem does not work with devise due to some monkey patching that devise performs on warden.
+I've fixed this issue and sent a [pull request](https://github.com/plataformatec/devise/pull/2300).
 
 ## Additional Information
 
