@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec', '~> 2.12'
   gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'rails', '~> 3.2'
+  gem.add_development_dependency 'rails', '>= 3.2'
   gem.add_development_dependency 'rack-test', '~> 0.6'
   gem.add_development_dependency 'addressable', '~> 2.3'
 
