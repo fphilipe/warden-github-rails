@@ -16,8 +16,6 @@ module Warden
 
       def_delegators :config,
                      :default_scope,
-                     :warden_config,
-                     :warden_config=,
                      :scopes,
                      :team_id
 

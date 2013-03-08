@@ -4,9 +4,6 @@ module Warden
       class Config
         BadConfig = Class.new(StandardError)
 
-        # A cache of the warden config for the active manager.
-        attr_accessor :warden_config
-
         # Default scope to use when not explicitly specified.
         attr_accessor :default_scope
 
