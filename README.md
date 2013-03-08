@@ -170,13 +170,14 @@ Once a user is logged in, you'll have access to it in the controller using `gith
 ## Using alongside Devise and other Warden Gems
 
 Currently this gem does not play nicely with other gems that setup a warden middleware.
-The reason is that warden does not have support for multiple middlewares.
-The warden middleware simply configures a warden instance and adds it to the environment.
-Any other warden middleware downstream checks for an upstream warden instance and skips itself if present.
+The reason is that warden simply does not have support for multiple middlewares.
+The warden middleware configures a warden instance and adds it to the rack environment.
+Any other warden middleware downstream checks for any existing warden instance in the environment and, if present, skips itself.
 I've opened an [issue](https://github.com/hassox/warden/issues/67) on the warden repository to discuss possible workarounds.
 
-Apart from the problem with warden, this gem does not work with devise due to some monkey patching that devise performs on warden.
-I've fixed this issue and sent a [pull request](https://github.com/plataformatec/devise/pull/2300).
+Nevertheless, this gem is compatible with devise.
+devise allows you to specify a block that will be invoked when the warden middleware is configured.
+This functionality is used in this gem in order to setup the github strategy for warden instead of inserting our own middleware.
 
 ## Additional Information
 
