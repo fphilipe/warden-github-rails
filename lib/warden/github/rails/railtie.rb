@@ -10,7 +10,7 @@ module Warden
           end
         end
 
-        initializer 'warden-github-rails.controller_helpers' do
+        initializer 'warden-github-rails.helpers' do
           ActiveSupport.on_load(:action_controller) do
             include ControllerHelpers
           end
