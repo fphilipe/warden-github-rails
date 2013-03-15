@@ -2,6 +2,10 @@ module Warden
   module GitHub
     module Rails
       module ControllerHelpers
+        def self.included(klass)
+          klass.helper_method(:github_authenticated?, :github_user)
+        end
+
         # Initiates the OAuth flow if not already authenticated for the
         # specified scope.
         def github_authenticate!(scope=Rails.default_scope)

@@ -43,6 +43,10 @@ RailsApp::Application.routes.draw do
     end
   end
 
+  %w[ user authenticated ].each do |method|
+    get "/view_tests/#{method}" => "view_tests##{method}"
+  end
+
   # Everything else should be a 404:
 
   match '*all' => responses[404]
