@@ -1,1 +1,2 @@
-ViewTestsController = Class.new(ActionController::Base)
+class ViewTestsController < ActionController::Base
+end
