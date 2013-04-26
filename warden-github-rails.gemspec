@@ -16,10 +16,10 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec', '~> 2.12'
   gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'rails', '~> 3.2'
+  gem.add_development_dependency 'rails', '>= 3.2'
   gem.add_development_dependency 'rack-test', '~> 0.6'
   gem.add_development_dependency 'addressable', '~> 2.3'
 
-  gem.add_dependency 'warden-github', '~> 0.13.2'
-  gem.add_dependency 'railties', '~> 3.2'
+  gem.add_dependency 'warden-github', '~> 0.14.0'
+  gem.add_dependency 'railties', '>= 3.2'
 end
