@@ -61,6 +61,18 @@ class UsersController < ApplicationController
 end
 ```
 
+## Installation
+
+To use this gem, add it to your `Gemfile`:
+
+```ruby
+gem 'warden-github-rails', '~> 1.0'
+```
+
+If you're using devise, make sure to use version 2.2.4 or newer.
+Previous versions are not compatible with warden-github-rails and thus will not work.
+See the note at [*Using alongside Devise and other Warden Gems*](#using-alongside-devise-and-other-warden-gems) for an explanation.
+
 ## Usage
 
 ### Configuration
@@ -175,7 +187,7 @@ The warden middleware configures a warden instance and adds it to the rack envir
 Any other warden middleware downstream checks for any existing warden instance in the environment and, if present, skips itself.
 I've opened an [issue](https://github.com/hassox/warden/issues/67) on the warden repository to discuss possible workarounds.
 
-Nevertheless, this gem is compatible with devise.
+Nevertheless, this gem is compatible with devise for version 2.2.4 and newer.
 devise allows you to specify a block that will be invoked when the warden middleware is configured.
 This functionality is used in this gem in order to setup the github strategy for warden instead of inserting our own middleware.
 
