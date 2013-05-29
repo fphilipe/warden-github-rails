@@ -10,7 +10,7 @@ rails_version = ENV['RAILS_VERSION']
 
 rails_opts = case rails_version
              when 'master'
-               { github: 'rails/rails' }
+               { :github => 'rails/rails' }
              when nil
                {}
              else
