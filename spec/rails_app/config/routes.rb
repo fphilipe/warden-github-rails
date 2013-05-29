@@ -49,5 +49,5 @@ RailsApp::Application.routes.draw do
 
   # Everything else should be a 404:
 
-  match '*all' => responses[404]
+  match '*all' => responses[404], via: :all
 end
