@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## v1.0.1
 
 - Fully test on Rails 4
 - Improve mock user membership stubbing
