@@ -6,7 +6,7 @@ describe Warden::GitHub::Rails::TestHelpers do
       it 'uses the default scope from config to login' do
         Warden::GitHub::Rails.stub(:default_scope => :foobar)
         should_receive(:login_as).with do |_, opts|
-          opts.fetch(:scope).should be :foobar
+          expect(opts.fetch(:scope)).to eq(:foobar)
         end
 
         github_login
@@ -16,7 +16,7 @@ describe Warden::GitHub::Rails::TestHelpers do
     context 'when a scope is specified' do
       it 'uses that scope to login' do
         should_receive(:login_as).with do |_, opts|
-          opts.fetch(:scope).should be :admin
+          expect(opts.fetch(:scope)).to eq(:admin)
         end
 
         github_login(:admin)
@@ -28,12 +28,12 @@ describe Warden::GitHub::Rails::TestHelpers do
 
       should_receive(:login_as).with do |user, _|
         expected_user = user
-        user.should be_a Warden::GitHub::Rails::TestHelpers::MockUser
+        expect(user).to be_a(Warden::GitHub::Rails::TestHelpers::MockUser)
       end
 
       user = github_login
 
-      user.should be expected_user
+      expect(user).to eq(expected_user)
     end
   end
 end

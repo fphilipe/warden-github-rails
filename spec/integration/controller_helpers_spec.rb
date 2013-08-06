@@ -11,14 +11,14 @@ describe 'controller helpers' do
 
         context 'when not logged in' do
           it 'initiates the oauth flow' do
-            request.should be_github_oauth_redirect
+            expect(request).to be_github_oauth_redirect
           end
         end
 
         context 'when logged in' do
           before { github_login(scope) }
           it 'does nothing' do
-            request.should be_ok
+            expect(request).to be_ok
           end
         end
       end
@@ -26,15 +26,15 @@ describe 'controller helpers' do
       describe '#github_logout' do
         context 'when not logged in' do
           it 'does nothing' do
-            get("/#{type}/logout").body.should eq 'false'
+            expect(get("/#{type}/logout").body).to eq('false')
           end
         end
 
         context 'when logged in' do
           it 'logs out the user' do
             github_login(scope)
-            get("/#{type}/logout").body.should eq 'true'
-            get("/#{type}/logout").body.should eq 'false'
+            expect(get("/#{type}/logout").body).to eq('true')
+            expect(get("/#{type}/logout").body).to eq('false')
           end
         end
       end
@@ -44,14 +44,14 @@ describe 'controller helpers' do
 
         context 'when not logged in' do
           it 'returns false' do
-            request.body.should eq 'false'
+            expect(request.body).to eq('false')
           end
         end
 
         context 'when logged in' do
           it 'returns true' do
             github_login(scope)
-            request.body.should eq 'true'
+            expect(request.body).to eq('true')
           end
         end
       end
@@ -61,15 +61,15 @@ describe 'controller helpers' do
 
         context 'when not logged in' do
           it 'returns nil' do
-            request.body.should be_blank
+            expect(request.body).to be_blank
           end
         end
 
         context 'when logged in' do
           it 'returns the logged in user' do
             github_login(scope)
-            request.body.
-              should include 'Warden::GitHub::Rails::TestHelpers::MockUser'
+            expect(request.body).to \
+              include('Warden::GitHub::Rails::TestHelpers::MockUser')
           end
         end
       end
@@ -79,14 +79,14 @@ describe 'controller helpers' do
 
         context 'when not logged in' do
           it 'should be nil' do
-            request.body.should be_blank
+            expect(request.body).to be_blank
           end
         end
 
         context 'when logged in' do
           it "returns the user's session" do
             github_login(scope)
-            request.body.should == { :foo => :bar }.to_s
+            expect(request.body).to eq({ :foo => :bar }.to_s)
           end
         end
       end

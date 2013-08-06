@@ -7,10 +7,10 @@ describe 'request to custom configured scope' do
     request = get url
     params = Addressable::URI.parse(request.location).query_values
 
-    request.should be_github_oauth_redirect
-    params.fetch('client_id').should eq args.fetch(:client_id)
-    params.fetch('redirect_uri').should =~ args.fetch(:redirect_uri)
-    params.fetch('scope').should eq args.fetch(:scope)
+    expect(request).to be_github_oauth_redirect
+    expect(params.fetch('client_id')).to eq(args.fetch(:client_id))
+    expect(params.fetch('redirect_uri')).to match(args.fetch(:redirect_uri))
+    expect(params.fetch('scope')).to eq(args.fetch(:scope))
   end
 
   context 'user' do

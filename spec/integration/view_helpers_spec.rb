@@ -5,7 +5,7 @@ describe 'view helpers' do
     subject(:request) { get "/view_tests/user" }
 
     it 'is defined' do
-      request.body.should include 'true'
+      expect(request.body).to include('true')
     end
   end
 
@@ -13,7 +13,7 @@ describe 'view helpers' do
     subject(:request) { get "/view_tests/authenticated" }
 
     it 'is defined' do
-      request.body.should include 'true'
+      expect(request.body).to include('true')
     end
   end
 end
