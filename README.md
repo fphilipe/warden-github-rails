@@ -179,6 +179,48 @@ end
 
 Once a user is logged in, you'll have access to it in the controller using `github_user`. It is an instance of `Warden::GitHub::User` which is defined in the [warden-github](https://github.com/atmos/warden-github/blob/master/lib/warden/github/user.rb) gem. The instance has several methods to access user information such as `#name`, `#id`, `#email`, etc. It also features a method `#api` which returns a preconfigured [Octokit](https://github.com/pengwynn/octokit) client for that user.
 
+### Test Helpers
+
+This gems comes with a couple test helpers to make your life easier:
+
+-   A method is added to `Rack::Response` called `#github_oauth_redirect?` which
+    returns true if the response is a redirect to a url that starts with
+    `https://github.com/login/oauth/authorize`. You can use it in your request
+    tests to make sure the OAuth dance is initiated. In rspec you could verify
+    this as follows:
+
+    ```ruby
+    subject { get '/some-url-that-triggers-oauth' }
+    it { should be_github_oauth_redirect }
+    ```
+
+-   A mock user that allows you to stub team and organization memberships:
+
+    ```ruby
+    user = Warden::GitHub::Rails::TestHelpers::MockUser.new
+    user.stub_membership(team: [234, 987], org: 'some-inc')
+    user.team_member?(234) # => true
+    user.organization_member?('rails') # => false
+    ```
+
+-   A method that creates a mock user and logs it in. If desired, the scope can
+    be specified. The method returns the mock user so that you can manipulate it
+    further:
+
+    ```ruby
+    user = github_login(:admin)
+
+    get '/org/rails/admin'
+    expect(response).to be_not_found
+
+    user.stub_membership(org: 'rails')
+    get '/org/rails/admin'
+    expect(response).to be_ok
+    ```
+
+In order to use the mock user and the `#github_login` method, make sure to
+include `Warden::GitHub::Rails::TestHelpers` in your tests.
+
 ## Using alongside Devise and other Warden Gems
 
 Currently this gem does not play nicely with other gems that setup a warden middleware.
