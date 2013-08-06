@@ -10,8 +10,10 @@ module Warden
             @memberships = { :team => [], :org => [] }
           end
 
-          def stub_membership(membership)
-            memberships.fetch(membership.keys.first) << membership.values.first
+          def stub_membership(args)
+            args.each do |type, values|
+              memberships.fetch(type).concat(Array(values))
+            end
           end
 
           def team_member?(id)
