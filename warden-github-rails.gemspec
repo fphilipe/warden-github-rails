@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rack-test', '~> 0.6'
   gem.add_development_dependency 'addressable', '~> 2.3'
 
-  gem.add_dependency 'warden-github', '~> 0.14.0'
+  gem.add_dependency 'warden-github', '~> 1.0'
   gem.add_dependency 'railties', '>= 3.1'
 end
