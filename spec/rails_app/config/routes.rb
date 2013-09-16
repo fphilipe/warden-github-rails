@@ -15,23 +15,23 @@ RailsApp::Application.routes.draw do
   github_authenticated(:admin)   { get '/admin/conditional'         => responses[200] }
   github_unauthenticated(:admin) { get '/admin/conditional_inverse' => responses[200] }
 
-  github_authenticate(:team => 123)  { get '/team/protected'   => responses[200] }
-  github_authenticated(:team => 123) { get '/team/conditional' => responses[200] }
+  github_authenticate(team: 123)  { get '/team/protected'   => responses[200] }
+  github_authenticated(team: 123) { get '/team/conditional' => responses[200] }
 
-  github_authenticate(:team => :marketing)  { get '/team_alias/protected'   => responses[200] }
-  github_authenticated(:team => :marketing) { get '/team_alias/conditional' => responses[200] }
+  github_authenticate(team: :marketing)  { get '/team_alias/protected'   => responses[200] }
+  github_authenticated(team: :marketing) { get '/team_alias/conditional' => responses[200] }
 
-  github_authenticate(:org => :foobar_inc)  { get '/org/protected'   => responses[200] }
-  github_authenticated(:org => :foobar_inc) { get '/org/conditional' => responses[200] }
+  github_authenticate(org: :foobar_inc)  { get '/org/protected'   => responses[200] }
+  github_authenticated(org: :foobar_inc) { get '/org/conditional' => responses[200] }
 
-  github_authenticate(:organization => 'some_org')  { get '/organization/protected'   => responses[200] }
-  github_authenticated(:organization => 'some_org') { get '/organization/conditional' => responses[200] }
+  github_authenticate(organization: 'some_org')  { get '/organization/protected'   => responses[200] }
+  github_authenticated(organization: 'some_org') { get '/organization/conditional' => responses[200] }
 
-  github_authenticated(:org => lambda { |req| req.params[:id] }) do
+  github_authenticated(org: lambda { |req| req.params[:id] }) do
     get '/dynamic_org/:id' => responses[200]
   end
 
-  github_authenticated(:team => lambda { |req| req.params[:id] }) do
+  github_authenticated(team: lambda { |req| req.params[:id] }) do
     get '/dynamic_team/:id' => responses[200]
   end
 

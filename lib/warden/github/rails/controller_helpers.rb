@@ -9,7 +9,7 @@ module Warden
         # Initiates the OAuth flow if not already authenticated for the
         # specified scope.
         def github_authenticate!(scope=Rails.default_scope)
-          request.env['warden'].authenticate!(:scope => scope)
+          request.env['warden'].authenticate!(scope: scope)
         end
 
         # Logs out a user if currently logged in for the specified scope.

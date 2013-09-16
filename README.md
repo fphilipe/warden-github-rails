@@ -22,12 +22,12 @@ They allow you to restrict access to members of your organization or a certain t
 This is how your rails `routes.rb` could look like:
 
 ```ruby
-constraints(:subdomain => 'admin') do
-  github_authenticate(:org => 'my_company_inc') do
+constraints(subdomain: 'admin') do
+  github_authenticate(org: 'my_company_inc') do
     resources :users
     resources :projects
 
-    github_authenticated(:team => 'sysadmins') do
+    github_authenticated(team: 'sysadmins') do
       resource :infrastructure
     end
   end
@@ -43,11 +43,11 @@ class UsersController < ApplicationController
 
   def new
     github_authenticate! # Performs OAuth flow when not logged in.
-    @user = User.new(:name => github_user.name, :email => github_user.email)
+    @user = User.new(name: github_user.name, email: github_user.email)
   end
 
   def create
-    attrs = params.require(:user).permit(:name, :email).merge(:github_id => github_user.id)
+    attrs = params.require(:user).permit(:name, :email).merge(github_id: github_user.id)
     @user = User.create(attrs)
 
     if @user
@@ -88,14 +88,14 @@ Here's how such a config might look like:
 
 ```ruby
 Warden::GitHub::Rails.setup do |config|
-  config.add_scope :user,  :client_id     => 'foo',
-                           :client_secret => 'bar',
-                           :scope         => 'user'
+  config.add_scope :user,  client_id:     'foo',
+                           client_secret: 'bar',
+                           scope:         'user'
 
-  config.add_scope :admin, :client_id     => 'abc',
-                           :client_secret => 'xyz',
-                           :redirect_uri  => '/admin/login/callback',
-                           :scope         => 'repo'
+  config.add_scope :admin, client_id:     'abc',
+                           client_secret: 'xyz',
+                           redirect_uri:  '/admin/login/callback',
+                           scope:         'repo'
 
   config.default_scope = :admin
 
@@ -129,17 +129,17 @@ github_unauthenticated do
 end
 
 # Only matches when member of the organization. Initiates login if not logged in.
-github_authenticate(:org => 'my_company') do
+github_authenticate(org: 'my_company') do
   resource :admin
 end
 
 # Only matches when member of the team. Does not initiate login if not logged in.
-github_authenticated(:team => 'markting') do
+github_authenticated(team: 'markting') do
   get '/dashboard' => 'dashboard#show'
 end
 
 # Using dynamic membership values:
-github_authenticate(:org => lambda { |req| r.params[:id] }) do
+github_authenticate(org: lambda { |req| r.params[:id] }) do
   get '/orgs/:id' => 'orgs#show'
 end
 ```

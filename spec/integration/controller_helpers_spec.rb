@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'controller helpers' do
   {
-    :scoped   => :admin,
-    :unscoped => Warden::GitHub::Rails.default_scope
+    scoped:   :admin,
+    unscoped: Warden::GitHub::Rails.default_scope
   }.each do |type, scope|
     context "when using #{type}" do
       describe '#github_authenticate!' do
@@ -86,7 +86,7 @@ describe 'controller helpers' do
         context 'when logged in' do
           it "returns the user's session" do
             github_login(scope)
-            expect(request.body).to eq({ :foo => :bar }.to_s)
+            expect(request.body).to eq({ foo: :bar }.to_s)
           end
         end
       end

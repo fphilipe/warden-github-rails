@@ -25,8 +25,8 @@ module Warden
 
         def setup_scopes(config)
           Rails.scopes.each do |scope, scope_config|
-            config.scope_defaults scope, :strategies => [:github],
-                                         :config => scope_config
+            config.scope_defaults scope, strategies: [:github],
+                                         config: scope_config
           end
         end
 

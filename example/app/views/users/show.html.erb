@@ -1,5 +1,5 @@
 <h2>
-  <%= image_tag @user.avatar_url, :width => 50, :height => 50 %>
+  <%= image_tag @user.avatar_url, width: 50, height: 50 %>
   <%= @user.login %>
   <%- if @user.name.present? %>
   (<%= @user.name %>)

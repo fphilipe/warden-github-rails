@@ -19,7 +19,7 @@
 <ul>
   <%- @members.each do |member| -%>
   <li>
-    <%= image_tag member.avatar_url, :width => 25, :height => 25 %>
+    <%= image_tag member.avatar_url, width: 25, height: 25 %>
     <%= link_to member.login, user_path(member.login) %>
   </li>
   <%- end -%>

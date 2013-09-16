@@ -13,7 +13,7 @@ describe 'request to a protected resource' do
         context 'and team member' do
           before do
             user = github_login
-            user.stub_membership(:team => 123)
+            user.stub_membership(team: 123)
           end
 
           it { should be_ok }
@@ -37,7 +37,7 @@ describe 'request to a protected resource' do
         context 'and team member' do
           before do
             user = github_login
-            user.stub_membership(:team => 456)
+            user.stub_membership(team: 456)
           end
 
           it { should be_ok }
@@ -57,7 +57,7 @@ describe 'request to a protected resource' do
         context 'and team member' do
           before do
             user = github_login
-            user.stub_membership(:team => 123)
+            user.stub_membership(team: 123)
           end
 
           it { should be_ok }
@@ -72,7 +72,7 @@ describe 'request to a protected resource' do
   end
 
   context 'that requires an organization membership' do
-    { :org => :foobar_inc, :organization => 'some_org' }.each do |key, value|
+    { org: :foobar_inc, organization: 'some_org' }.each do |key, value|
       context "which is specified as #{key}" do
         subject { get "/#{key}/protected" }
 
@@ -84,7 +84,7 @@ describe 'request to a protected resource' do
           context 'and organization member' do
             before do
               user = github_login
-              user.stub_membership(:org => value)
+              user.stub_membership(org: value)
             end
 
             it { should be_ok }
@@ -105,7 +105,7 @@ describe 'request to a protected resource' do
         context 'and organization member' do
           before do
             user = github_login
-            user.stub_membership(:org => 'some_org')
+            user.stub_membership(org: 'some_org')
           end
 
           it { should be_ok }
@@ -128,7 +128,7 @@ describe 'request to a resource that only exists when logged in' do
       context 'when team member' do
         before do
           user = github_login
-          user.stub_membership(:team => 123)
+          user.stub_membership(team: 123)
         end
 
         it { should be_ok }
@@ -146,7 +146,7 @@ describe 'request to a resource that only exists when logged in' do
       context 'when team member' do
         before do
           user = github_login
-          user.stub_membership(:team => 456)
+          user.stub_membership(team: 456)
         end
 
         it { should be_ok }
@@ -160,14 +160,14 @@ describe 'request to a resource that only exists when logged in' do
   end
 
   context 'that requires an organization membership' do
-    { :org => :foobar_inc, :organization => 'some_org' }.each do |key, value|
+    { org: :foobar_inc, organization: 'some_org' }.each do |key, value|
       context "which is specified as #{key}" do
         subject { get "/#{key}/conditional" }
 
         context 'when organization member' do
           before do
             user = github_login
-            user.stub_membership(:org => value)
+            user.stub_membership(org: value)
           end
 
           it { should be_ok }
