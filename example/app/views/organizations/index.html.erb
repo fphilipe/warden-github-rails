@@ -6,7 +6,7 @@
 <ul>
   <%- @orgs.each do |org| -%>
   <li>
-    <%= image_tag org.avatar_url, width: 25, height: 25 %>
+    <%= image_tag org.rels[:avatar].href, width: 25, height: 25 %>
     <%= link_to org.login, org_path(org.login) %>
   </li>
   <%- end -%>

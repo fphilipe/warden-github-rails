@@ -1,5 +1,5 @@
 <h2>
-  <%= image_tag @user.avatar_url, width: 50, height: 50 %>
+  <%= image_tag @user.rels[:avatar].href, width: 50, height: 50 %>
   <%= @user.login %>
   <%- if @user.name.present? %>
   (<%= @user.name %>)
@@ -21,7 +21,7 @@
 <%- else -%>
 <dl>
   <%- @repos.each do |repo| -%>
-  <dt><%= link_to repo.name, repo.html_url %></dt>
+  <dt><%= link_to repo.name, repo.rels[:html].href %></dt>
   <dd><%= repo.description %></dd>
   <%- end -%>
 </dl>
