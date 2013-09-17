@@ -19,5 +19,5 @@ Example::Application.routes.draw do
 
   root to: 'home#show'
 
-  match '*all' => 'application#not_found'
+  match '*all' => 'application#not_found', via: :all
 end
