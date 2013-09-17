@@ -16,18 +16,18 @@ describe 'request to custom configured scope' do
   context 'user' do
     it 'passes the correct configs to the oauth flow' do
       test_redirect('/protected',
-                    :client_id => 'foo',
-                    :redirect_uri => /\/protected$/,
-                    :scope => 'user')
+                    client_id: 'foo',
+                    redirect_uri: /\/protected$/,
+                    scope: 'user')
     end
   end
 
   context 'admin' do
     it 'passes the correct configs to the oauth flow' do
       test_redirect('/admin/protected',
-                    :client_id => 'abc',
-                    :redirect_uri => /\/admin\/login\/callback$/,
-                    :scope => 'repo')
+                    client_id: 'abc',
+                    redirect_uri: /\/admin\/login\/callback$/,
+                    scope: 'repo')
     end
   end
 end

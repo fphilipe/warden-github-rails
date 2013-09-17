@@ -10,7 +10,7 @@ module Warden
         # Login a mock GitHub user and return it.
         def github_login(scope=Rails.default_scope)
           MockUser.new.tap do |user|
-            login_as(user, :scope => scope)
+            login_as(user, scope: scope)
           end
         end
       end
