@@ -19,3 +19,5 @@ matrix:
   exclude:
     - rvm: 1.9.2
       env: "RAILS_VERSION=master"
+    - rvm: 1.9.2
+      env: "RAILS_VERSION=4.0.0"
