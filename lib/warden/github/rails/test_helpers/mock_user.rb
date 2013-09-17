@@ -7,7 +7,7 @@ module Warden
 
           def initialize(*args)
             super
-            @memberships = { :team => [], :org => [] }
+            @memberships = { team: [], org: [] }
           end
 
           def stub_membership(args)

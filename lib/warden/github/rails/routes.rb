@@ -6,10 +6,10 @@ module Warden
         # authenticated, it initiates the OAuth flow.
         #
         # Team and organization memberships can be checked by specifying a hash
-        # such as `:team => 'foobar'` or `:org => 'my_company'`.
+        # such as `team: 'foobar'` or `org: 'my_company'`.
         def github_authenticate(scope=nil, options={}, &routes_block)
           github_constraint(scope, options, routes_block) do |warden, scope|
-            warden.authenticate!(:scope => scope)
+            warden.authenticate!(scope: scope)
           end
         end
 
@@ -17,10 +17,10 @@ module Warden
         # not authenticated, it does not initiate the OAuth flow.
         #
         # Team and organization memberships can be checked by specifying a hash
-        # such as `:team => 'foobar'` or `:org => 'my_company'`.
+        # such as `team: 'foobar'` or `org: 'my_company'`.
         def github_authenticated(scope=nil, options={}, &routes_block)
           github_constraint(scope, options, routes_block) do |warden, scope|
-            warden.authenticated?(:scope => scope)
+            warden.authenticated?(scope: scope)
           end
         end
 
@@ -30,7 +30,7 @@ module Warden
         # limited usage.
         def github_unauthenticated(scope=nil, options={}, &routes_block)
           github_constraint(scope, options, routes_block) do |warden, scope|
-            not warden.authenticated?(:scope => scope)
+            not warden.authenticated?(scope: scope)
           end
         end
 

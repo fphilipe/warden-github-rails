@@ -6,7 +6,7 @@
 <%- else -%>
 <dl>
   <%- @repos.each do |repo| -%>
-  <dt><%= link_to repo.name, repo.html_url %></dt>
+  <dt><%= link_to repo.name, repo.rels[:html].href %></dt>
   <dd><%= repo.description %></dd>
   <%- end -%>
 </dl>
@@ -19,7 +19,7 @@
 <ul>
   <%- @members.each do |member| -%>
   <li>
-    <%= image_tag member.avatar_url, :width => 25, :height => 25 %>
+    <%= image_tag member.rels[:avatar].href, width: 25, height: 25 %>
     <%= link_to member.login, user_path(member.login) %>
   </li>
   <%- end -%>
