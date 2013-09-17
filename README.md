@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     attrs = params.require(:user).permit(:name, :email).merge(github_id: github_user.id)
     @user = User.create(attrs)
 
-    if @user
+    if @user.persisted?
       redirect_to :show
     else
       render :new
@@ -61,12 +61,30 @@ class UsersController < ApplicationController
 end
 ```
 
+## Example App
+
+This repository includes an example app in [example/](example/).
+To play with it, follow these steps:
+
+1.  [Create an OAuth application in your GitHub settings](https://github.com/settings/applications/new).
+    Set the callback URL to `http://localhost:3000/`
+
+2.  Check out this repo and run:
+
+    ```
+    $ bundle
+    $ cd example
+    $ GITHUB_CLIENT_ID=your_id_from_step1 GITHUB_CLIENT_SECRET=your_secret_from_step1 bundle exec rails s
+    ```
+
+3.  Point your browser to [http://localhost:3000/](http://localhost:3000/) and enjoy!
+
 ## Installation
 
 To use this gem, add it to your `Gemfile`:
 
 ```ruby
-gem 'warden-github-rails', '~> 1.0'
+gem 'warden-github-rails', '~> 1.1.0'
 ```
 
 If you're using devise, make sure to use version 2.2.4 or newer.
@@ -139,7 +157,7 @@ github_authenticated(team: 'markting') do
 end
 
 # Using dynamic membership values:
-github_authenticate(org: lambda { |req| r.params[:id] }) do
+github_authenticate(org: lambda { |req| req.params[:id] }) do
   get '/orgs/:id' => 'orgs#show'
 end
 ```
@@ -162,7 +180,7 @@ class SomeController < ActionController::Base
 
   def settings
     github_authenticate!
-    @settings = UserSettings.find_by_github_user_id(github_user.id)
+    @settings = UserSettings.find_by(github_user_id: github_user.id)
   end
 
   def finish_wizard
@@ -177,7 +195,10 @@ end
 
 ### Communicating with the GitHub API
 
-Once a user is logged in, you'll have access to it in the controller using `github_user`. It is an instance of `Warden::GitHub::User` which is defined in the [warden-github](https://github.com/atmos/warden-github/blob/master/lib/warden/github/user.rb) gem. The instance has several methods to access user information such as `#name`, `#id`, `#email`, etc. It also features a method `#api` which returns a preconfigured [Octokit](https://github.com/pengwynn/octokit) client for that user.
+Once a user is logged in, you'll have access to it in the controller using `github_user`.
+It is an instance of `Warden::GitHub::User` which is defined in the [warden-github](https://github.com/atmos/warden-github/blob/master/lib/warden/github/user.rb) gem.
+The instance has several methods to access user information such as `#name`, `#id`, `#email`, etc.
+It also features a method `#api` which returns a preconfigured [Octokit](https://github.com/octokit/octokit.rb) client for that user.
 
 ### Test Helpers
 
@@ -239,7 +260,7 @@ This functionality is used in this gem in order to setup the github strategy for
 
 - [warden-github](https://github.com/atmos/warden-github)
     - [warden](https://github.com/hassox/warden)
-    - [octokit](https://github.com/pengwynn/octokit)
+    - [octokit](https://github.com/octokit/octokit.rb)
 
 ### Maintainers
 
