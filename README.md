@@ -269,3 +269,7 @@ This functionality is used in this gem in order to setup the github strategy for
 ### License
 
 MIT License. Copyright 2013 Philipe Fatio
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fphilipe/warden-github-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
