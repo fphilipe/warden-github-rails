@@ -25,3 +25,8 @@ group :development do
     gem 'ruby-debug', platforms: :ruby_18, require: false
   end
 end
+
+platforms :rbx do
+  gem 'rubysl'
+  gem 'racc'
+end
