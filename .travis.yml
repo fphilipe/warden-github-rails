@@ -1,11 +1,12 @@
 language: ruby
+cache: bundler
 script: "bundle exec rspec"
 rvm:
-  - 1.9.2
-  - 1.9.3
+  - 2.1.0
   - 2.0.0
+  - 1.9.3
   - ruby-head
-  - jruby-19mode # JRuby in 1.9 mode
+  - jruby-19mode
   - rbx-2.1.1
 env:
   - "RAILS_VERSION=3.1.0"
@@ -16,8 +17,3 @@ matrix:
   allow_failures:
     - env: "RAILS_VERSION=master"
     - rvm: ruby-head
-  exclude:
-    - rvm: 1.9.2
-      env: "RAILS_VERSION=master"
-    - rvm: 1.9.2
-      env: "RAILS_VERSION=4.0.0"
