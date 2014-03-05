@@ -110,12 +110,12 @@ Here's how such a config might look like:
 Warden::GitHub::Rails.setup do |config|
   config.add_scope :user,  client_id:     'foo',
                            client_secret: 'bar',
-                           scope:         'user'
+                           scope:         'user:email'
 
   config.add_scope :admin, client_id:     'abc',
                            client_secret: 'xyz',
                            redirect_uri:  '/admin/login/callback',
-                           scope:         'repo'
+                           scope:         'read:org'
 
   config.default_scope = :admin
 
