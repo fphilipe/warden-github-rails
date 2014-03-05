@@ -16,7 +16,7 @@ module Warden
         attr_reader :teams
 
         def initialize
-          @default_scope = :user
+          @default_scope = :"user:email"
           @scopes = {}
           @teams = {}
         end
