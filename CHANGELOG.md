@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.1
+
+- Transform string to integer when stubbing team membership
+- Place redirect helper in correct rack module
+
 ## v1.1.0
 
 - Upgrade to octokit.rb version 2
