@@ -12,7 +12,9 @@ module Warden
 
           def stub_membership(args)
             args.each do |type, values|
-              memberships.fetch(type).concat(Array(values))
+              values = Array(values)
+              values.map!(&:to_i) if type == :team
+              memberships.fetch(type).concat(values)
             end
           end
 
