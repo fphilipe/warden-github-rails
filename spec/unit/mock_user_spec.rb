@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Warden::GitHub::Rails::TestHelpers::MockUser do
-  it { should be_a Warden::GitHub::User }
+  it { is_expected.to be_a Warden::GitHub::User }
 
   describe '#stub_membership' do
     subject(:user) { described_class.new }

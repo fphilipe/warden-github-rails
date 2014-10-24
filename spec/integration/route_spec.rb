@@ -4,12 +4,12 @@ describe 'request to a protected resource' do
   subject { get '/protected' }
 
   context 'when not logged in' do
-    it { should be_github_oauth_redirect }
+    it { is_expected.to be_github_oauth_redirect }
   end
 
   context 'when logged in' do
     before { github_login }
-    it { should be_ok }
+    it { is_expected.to be_ok }
   end
 
   context 'with multiple scopes' do
@@ -17,12 +17,12 @@ describe 'request to a protected resource' do
 
     context 'when logged in in the wrong scope' do
       before { github_login }
-      it { should be_github_oauth_redirect }
+      it { is_expected.to be_github_oauth_redirect }
     end
 
     context 'when logged in in the correct scope' do
       before { github_login(:admin) }
-      it { should be_ok }
+      it { is_expected.to be_ok }
     end
   end
 end
@@ -31,12 +31,12 @@ describe 'request to a resource that only exists when logged in' do
   subject { get '/conditional' }
 
   context 'when not logged in' do
-    it { should be_not_found }
+    it { is_expected.to be_not_found }
   end
 
   context 'when logged in' do
     before { github_login }
-    it { should be_ok }
+    it { is_expected.to be_ok }
   end
 
   context 'with mutliple scopes' do
@@ -44,12 +44,12 @@ describe 'request to a resource that only exists when logged in' do
 
     context 'when logged in in the wrong scope' do
       before { github_login }
-      it { should be_not_found }
+      it { is_expected.to be_not_found }
     end
 
     context 'when logged in in the correct scope' do
       before { github_login(:admin) }
-      it { should be_ok }
+      it { is_expected.to be_ok }
     end
   end
 end
@@ -58,12 +58,12 @@ describe 'request to a resource that only exists when logged out' do
   subject { get '/conditional_inverse' }
 
   context 'when not logged in' do
-    it { should be_ok }
+    it { is_expected.to be_ok }
   end
 
   context 'when logged in' do
     before { github_login }
-    it { should be_not_found }
+    it { is_expected.to be_not_found }
   end
 
   context 'with mutliple scopes' do
@@ -71,12 +71,12 @@ describe 'request to a resource that only exists when logged out' do
 
     context 'when logged in in the wrong scope' do
       before { github_login }
-      it { should be_ok }
+      it { is_expected.to be_ok }
     end
 
     context 'when logged in in the correct scope' do
       before { github_login(:admin) }
-      it { should be_not_found }
+      it { is_expected.to be_not_found }
     end
   end
 end

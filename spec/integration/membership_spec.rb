@@ -6,7 +6,7 @@ describe 'request to a protected resource' do
       subject { get '/team/protected' }
 
       context 'when not logged in' do
-        it { should be_github_oauth_redirect }
+        it { is_expected.to be_github_oauth_redirect }
       end
 
       context 'when logged in' do
@@ -16,12 +16,12 @@ describe 'request to a protected resource' do
             user.stub_membership(team: 123)
           end
 
-          it { should be_ok }
+          it { is_expected.to be_ok }
         end
 
         context 'and not team member' do
           before { github_login }
-          it { should be_not_found}
+          it { is_expected.to be_not_found}
         end
       end
     end
@@ -30,7 +30,7 @@ describe 'request to a protected resource' do
       subject { get '/team_alias/protected' }
 
       context 'when not logged in' do
-        it { should be_github_oauth_redirect }
+        it { is_expected.to be_github_oauth_redirect }
       end
 
       context 'when logged in' do
@@ -40,12 +40,12 @@ describe 'request to a protected resource' do
             user.stub_membership(team: 456)
           end
 
-          it { should be_ok }
+          it { is_expected.to be_ok }
         end
 
         context 'and not team member' do
           before { github_login }
-          it { should be_not_found}
+          it { is_expected.to be_not_found}
         end
       end
     end
@@ -60,12 +60,12 @@ describe 'request to a protected resource' do
             user.stub_membership(team: 123)
           end
 
-          it { should be_ok }
+          it { is_expected.to be_ok }
         end
 
         context 'and not team member' do
           before { github_login }
-          it { should be_not_found}
+          it { is_expected.to be_not_found}
         end
       end
     end
@@ -77,7 +77,7 @@ describe 'request to a protected resource' do
         subject { get "/#{key}/protected" }
 
         context 'when not logged in' do
-          it { should be_github_oauth_redirect }
+          it { is_expected.to be_github_oauth_redirect }
         end
 
         context 'when logged in' do
@@ -87,12 +87,12 @@ describe 'request to a protected resource' do
               user.stub_membership(org: value)
             end
 
-            it { should be_ok }
+            it { is_expected.to be_ok }
           end
 
           context 'and not organization member' do
             before { github_login }
-            it { should be_not_found }
+            it { is_expected.to be_not_found }
           end
         end
       end
@@ -108,12 +108,12 @@ describe 'request to a protected resource' do
             user.stub_membership(org: 'some_org')
           end
 
-          it { should be_ok }
+          it { is_expected.to be_ok }
         end
 
         context 'and not organization member' do
           before { github_login }
-          it { should be_not_found}
+          it { is_expected.to be_not_found}
         end
       end
     end
@@ -131,12 +131,12 @@ describe 'request to a resource that only exists when logged in' do
           user.stub_membership(team: 123)
         end
 
-        it { should be_ok }
+        it { is_expected.to be_ok }
       end
 
       context 'when not team member' do
         before { github_login }
-        it { should be_not_found}
+        it { is_expected.to be_not_found}
       end
     end
 
@@ -149,12 +149,12 @@ describe 'request to a resource that only exists when logged in' do
           user.stub_membership(team: 456)
         end
 
-        it { should be_ok }
+        it { is_expected.to be_ok }
       end
 
       context 'when not team member' do
         before { github_login }
-        it { should be_not_found}
+        it { is_expected.to be_not_found}
       end
     end
   end
@@ -170,12 +170,12 @@ describe 'request to a resource that only exists when logged in' do
             user.stub_membership(org: value)
           end
 
-          it { should be_ok }
+          it { is_expected.to be_ok }
         end
 
         context 'when not organization member' do
           before { github_login }
-          it { should be_not_found }
+          it { is_expected.to be_not_found }
         end
       end
     end

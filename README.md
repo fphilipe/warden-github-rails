@@ -214,7 +214,7 @@ This gems comes with a couple test helpers to make your life easier:
 
     ```ruby
     subject { get '/some-url-that-triggers-oauth' }
-    it { should be_github_oauth_redirect }
+    it { is_expected.to be_github_oauth_redirect }
     ```
 
 -   A mock user that allows you to stub team and organization memberships:

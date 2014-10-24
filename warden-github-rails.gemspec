@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($/) - Dir.glob('example/**/*')
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
 
-  gem.add_development_dependency 'rspec', '~> 2.14'
+  gem.add_development_dependency 'rspec', '~> 3.1'
   gem.add_development_dependency 'rails', '>= 3.2'
   gem.add_development_dependency 'rack-test', '~> 0.6'
   gem.add_development_dependency 'addressable', '~> 2.3'

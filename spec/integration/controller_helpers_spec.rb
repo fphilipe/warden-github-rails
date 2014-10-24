@@ -78,7 +78,7 @@ describe 'controller helpers' do
         subject(:request) { get "/#{type}/session" }
 
         context 'when not logged in' do
-          it 'should be nil' do
+          it 'returns nil' do
             expect(request.body).to be_blank
           end
         end
