@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2
+
+- Prevent loss of memberships in mocked user when marshaling
+
 ## v1.1.1
 
 - Transform string to integer when stubbing team membership
