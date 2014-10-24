@@ -25,6 +25,15 @@ module Warden
           def organization_member?(id)
             memberships[:org].include?(id)
           end
+
+          def marshal_dump
+            [memberships, super]
+          end
+
+          def marshal_load(data)
+            @memberships, super_data = data
+            super(super_data)
+          end
         end
       end
     end
