@@ -18,4 +18,12 @@ describe Warden::GitHub::Rails::TestHelpers::MockUser do
       expect(user).to be_organization_member('foobar')
     end
   end
+
+  it 'can be marshaled' do
+    user = described_class.new
+    user.stub_membership(org: ['apple', 'facebook'], team: [12, 34])
+    marshaled_user = Marshal.load(Marshal.dump(user))
+
+    expect(marshaled_user.memberships).to eq(user.memberships)
+  end
 end
