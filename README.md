@@ -241,8 +241,7 @@ This gems comes with a couple test helpers to make your life easier:
     expect(response).to be_ok
     ```
 
-In order to use the mock user and the `#github_login` method, make sure to
-include `Warden::GitHub::Rails::TestHelpers` in your tests.
+In order to use the mock user and the `#github_login` method, make sure to `require 'warden/github/rails/test_helpers'` and to `include Warden::GitHub::Rails::TestHelpers` in your tests.
 
 ## Using alongside Devise and other Warden Gems
 
