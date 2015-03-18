@@ -140,6 +140,33 @@ describe 'request to a resource that only exists when logged in' do
       end
     end
 
+    context 'which is specified by multiple numeric team ids' do
+      subject { get '/multiple_teams/conditional' }
+
+      context 'when a first team member' do
+        before do
+          user = github_login
+          user.stub_membership(team: 123)
+        end
+
+        it { is_expected.to be_ok }
+      end
+
+      context 'when another team member' do
+        before do
+          user = github_login
+          user.stub_membership(team: 345)
+        end
+
+        it { is_expected.to be_ok }
+      end
+
+      context 'when not team member' do
+        before { github_login }
+        it { is_expected.to be_not_found}
+      end
+    end
+
     context 'which is specified by a team alias' do
       subject { get '/team_alias/conditional' }
 
@@ -153,6 +180,33 @@ describe 'request to a resource that only exists when logged in' do
       end
 
       context 'when not team member' do
+        before { github_login }
+        it { is_expected.to be_not_found}
+      end
+    end
+
+    context 'which specifies multiple team aliases' do
+      subject { get '/multiple_team_aliases/conditional' }
+
+      context 'when a member of the first team' do
+        before do
+          user = github_login
+          user.stub_membership(team: 456)
+        end
+
+        it { is_expected.to be_ok }
+      end
+
+      context 'when a member of another team' do
+        before do
+          user = github_login
+          user.stub_membership(team: 789)
+        end
+
+        it { is_expected.to be_ok }
+      end
+
+      context 'when not a team member' do
         before { github_login }
         it { is_expected.to be_not_found}
       end
