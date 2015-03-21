@@ -8,11 +8,17 @@ module Warden
           # specified that is invoked when its warden middleware is configured.
           # This makes it possible to setup warden-github-rails through devise.
           if defined?(::Devise)
-            ::Devise.warden { |config| setup_scopes(config) }
+            ::Devise.warden do |config| 
+              setup_scopes(config) 
+              config.serialize_from_session { |key| Warden::GitHub::Verifier.load(key) }
+              config.serialize_into_session { |user| Warden::GitHub::Verifier.dump(user) }
+            end
           else
             app.config.middleware.use Warden::Manager do |config|
               setup_failure_app(config)
               setup_scopes(config)
+              config.serialize_from_session { |key| Warden::GitHub::Verifier.load(key) }
+              config.serialize_into_session { |user| Warden::GitHub::Verifier.dump(user) }
             end
           end
         end
