@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+- Add warden config to not intercept 401 status
+
 ## v1.1.2
 
 - Prevent loss of memberships in mocked user when marshaling
