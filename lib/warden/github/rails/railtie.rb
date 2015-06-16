@@ -13,6 +13,7 @@ module Warden
             app.config.middleware.use Warden::Manager do |config|
               setup_failure_app(config)
               setup_scopes(config)
+              config.intercept_401 = false
             end
           end
         end
@@ -39,4 +40,3 @@ module Warden
     end
   end
 end
-
