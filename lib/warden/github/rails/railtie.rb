@@ -14,6 +14,8 @@ module Warden
               setup_failure_app(config)
               setup_scopes(config)
               config.intercept_401 = false
+              config.serialize_from_session { |key| Warden::GitHub::Verifier.load(key) }
+              config.serialize_into_session { |user| Warden::GitHub::Verifier.dump(user) }
             end
           end
         end
