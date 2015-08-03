@@ -3,9 +3,8 @@ language: ruby
 cache: bundler
 script: "bundle exec rspec"
 rvm:
-  - 2.1
-  - 2.0.0
   - 1.9.3
+  - 2.2.2
   - ruby-head
   - jruby-19mode
   - rbx-2
@@ -17,4 +16,3 @@ matrix:
   allow_failures:
     - env: "RAILS_VERSION=master"
     - rvm: ruby-head
-    - rvm: rbx-2
