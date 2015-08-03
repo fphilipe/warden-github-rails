@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## v1.2.0
 
 - Add warden config to not intercept 401 status
 - Support Rails 4.2 default of JSON marshalling
