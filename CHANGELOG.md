@@ -3,6 +3,7 @@
 ## master
 
 - Add warden config to not intercept 401 status
+- Support Rails 4.2 default of JSON marshalling
 
 ## v1.1.2
 
