@@ -4,6 +4,7 @@
 
 - Add warden config to not intercept 401 status
 - Support Rails 4.2 default of JSON marshalling
+- Drop support for Rails 3.1
 
 ## v1.1.2
 
