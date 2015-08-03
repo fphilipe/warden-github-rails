@@ -5,7 +5,6 @@
 [![Dependency Status][deps-image]][deps-link]
 [![Code Climate][gpa-image]][gpa-link]
 [![Coverage Status][cov-image]][cov-link]
-[![Bitdeli Badge][stats-image]][stats-link]
 
 A gem for rails that provides easy GitHub OAuth integration.
 It is built on top of [warden-github](https://github.com/atmos/warden-github), which gives you an easy to use [warden](https://github.com/hassox/warden) strategy to authenticate GitHub users.
@@ -278,18 +277,16 @@ Philipe Fatio ([@fphilipe][fphilipe twitter])
 
 MIT License. Copyright 2013 Philipe Fatio
 
-[build-image]: https://travis-ci.org/fphilipe/warden-github-rails.png
+[build-image]: https://travis-ci.org/fphilipe/warden-github-rails.svg
 [build-link]:  https://travis-ci.org/fphilipe/warden-github-rails
-[gem-image]:   https://badge.fury.io/rb/warden-github-rails.png
+[gem-image]:   https://badge.fury.io/rb/warden-github-rails.svg
 [gem-link]:    https://rubygems.org/gems/warden-github-rails
-[deps-image]:  https://gemnasium.com/fphilipe/warden-github-rails.png
+[deps-image]:  https://gemnasium.com/fphilipe/warden-github-rails.svg
 [deps-link]:   https://gemnasium.com/fphilipe/warden-github-rails
-[gpa-image]:   https://codeclimate.com/github/fphilipe/warden-github-rails.png
+[gpa-image]:   https://codeclimate.com/github/fphilipe/warden-github-rails.svg
 [gpa-link]:    https://codeclimate.com/github/fphilipe/warden-github-rails
-[cov-image]:   https://coveralls.io/repos/fphilipe/warden-github-rails/badge.png
+[cov-image]:   https://coveralls.io/repos/fphilipe/warden-github-rails/badge.svg
 [cov-link]:    https://coveralls.io/r/fphilipe/warden-github-rails
-[stats-image]: https://d2weczhvl823v0.cloudfront.net/fphilipe/warden-github-rails/trend.png
-[stats-link]:  https://bitdeli.com/
 [tip-image]:   https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png
 [tip-link]:    https://www.gittip.com/fphilipe/
 
