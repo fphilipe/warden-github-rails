@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## v1.2.1
 
 - Add support for multiple teams ([@bhuga])
 
