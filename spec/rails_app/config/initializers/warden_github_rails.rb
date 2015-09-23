@@ -9,4 +9,5 @@ Warden::GitHub::Rails.setup do |config|
                            scope:         'repo'
 
   config.add_team :marketing, 456
+  config.add_team :interns,   789
 end

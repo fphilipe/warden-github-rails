@@ -57,8 +57,8 @@ module Warden
         end
 
         def github_enforce_options(user, options)
-          if (team = options[:team])
-            user.team_member?(Rails.team_id(team))
+          if (teams = options[:team])
+            Array(teams).any? { |team| user.team_member?(Rails.team_id(team)) }
           elsif (org = options[:org] || options[:organization])
             user.organization_member?(org)
           else

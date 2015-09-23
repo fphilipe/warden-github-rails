@@ -157,6 +157,11 @@ github_authenticated(team: 'markting') do
   get '/dashboard' => 'dashboard#show'
 end
 
+# Matches if a member of any of the teams given. Does not initiate login if not logged in.
+github_authenticated(team: ['markting', 'graphic-design']) do
+  get '/dashboard' => 'dashboard#show'
+end
+
 # Using dynamic membership values:
 github_authenticate(org: lambda { |req| req.params[:id] }) do
   get '/orgs/:id' => 'orgs#show'

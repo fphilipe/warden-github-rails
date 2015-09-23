@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+- Add support for multiple teams ([@bhuga])
+
 ## v1.2.0
 
 - Add warden config to not intercept 401 status
@@ -33,3 +37,5 @@
 ## v0.0.1
 
 - Initial release
+
+[@bhuga]: https://github.com/bhuga
