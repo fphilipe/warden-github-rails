@@ -14,8 +14,6 @@ module Warden
               setup_failure_app(config)
               setup_scopes(config)
               config.intercept_401 = false
-              config.serialize_from_session { |key| Warden::GitHub::Verifier.load(key) }
-              config.serialize_into_session { |user| Warden::GitHub::Verifier.dump(user) }
             end
           end
         end
@@ -30,6 +28,8 @@ module Warden
           Rails.scopes.each do |scope, scope_config|
             config.scope_defaults scope, strategies: [:github],
                                          config: scope_config
+            config.serialize_from_session(scope) { |key| Verifier.load(key) }
+            config.serialize_into_session(scope) { |user| Verifier.dump(user) }
           end
         end
 
