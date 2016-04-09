@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+- Improve serialization and devise compatibility
+
 ## v1.2.1
 
 - Add support for multiple teams ([@bhuga])
