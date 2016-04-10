@@ -1,28 +1,28 @@
 class UnscopedController < ActionController::Base
   def authenticate
     github_authenticate!
-    render nothing: true
+    head :ok
   end
 
   def logout
     was_logged_in = !github_user.nil?
     github_logout
-    render text: was_logged_in
+    render plain: was_logged_in
   end
 
   def authenticated
-    render text: github_authenticated?
+    render plain: github_authenticated?
   end
 
   def user
-    render text: github_user
+    render plain: github_user
   end
 
   def session
-    if (session = github_session)
-      session[:foo] = :bar
+    if github_session
+      github_session[:foo] = :bar
     end
 
-    render text: github_session
+    render json: github_session
   end
 end
