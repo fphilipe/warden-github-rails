@@ -1,18 +1,20 @@
 sudo: false
 language: ruby
 cache: bundler
-script: "bundle exec rspec"
+script: bundle exec rspec
 rvm:
-  - 1.9.3
-  - 2.2.2
+  - 2.3.0
   - ruby-head
-  - jruby-19mode
+  - jruby
   - rbx-2
 env:
-  - "RAILS_VERSION=3.2"
-  - "RAILS_VERSION=4.0"
-  - "RAILS_VERSION=master"
+  global:
+    - JRUBY_OPTS="--2.0"
+  matrix:
+    - RAILS_VERSION=3
+    - RAILS_VERSION=4
+    - RAILS_VERSION=master
 matrix:
   allow_failures:
-    - env: "RAILS_VERSION=master"
+    - env: RAILS_VERSION=master
     - rvm: ruby-head
