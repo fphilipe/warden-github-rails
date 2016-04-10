@@ -79,14 +79,14 @@ describe 'controller helpers' do
 
         context 'when not logged in' do
           it 'returns nil' do
-            expect(request.body).to be_blank
+            expect(request.body).to eq('null')
           end
         end
 
         context 'when logged in' do
           it "returns the user's session" do
             github_login(scope)
-            expect(request.body).to eq({ foo: :bar }.to_s)
+            expect(request.body).to eq({ foo: :bar }.to_json)
           end
         end
       end
