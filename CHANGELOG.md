@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## v1.2.2
 
 - Improve serialization and devise compatibility
 
