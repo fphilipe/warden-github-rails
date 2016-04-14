@@ -85,7 +85,7 @@ To play with it, follow these steps:
 To use this gem, add it to your `Gemfile`:
 
 ```ruby
-gem 'warden-github-rails', '~> 1.1.0'
+gem 'warden-github-rails'
 ```
 
 If you're using devise, make sure to use version 2.2.4 or newer.
