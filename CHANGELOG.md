@@ -1,5 +1,10 @@
 # Changelog
 
+## HEAD
+
+- Use custom session serialization for proper compatibility with mock users
+  (#16)
+
 ## v1.2.2
 
 - Improve serialization and devise compatibility

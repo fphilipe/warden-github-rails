@@ -2,6 +2,13 @@ module Warden
   module GitHub
     module Rails
       class Railtie < ::Rails::Railtie
+        SERIALIZE_FROM_SESSION = -> ((class_name, data)) do
+          class_name.constantize.new.tap { |user| user.marshal_load(data) }
+        end
+        SERIALIZE_INTO_SESSION = -> (user) do
+          [user.class.name, user.marshal_dump]
+        end
+
         initializer 'warden-github-rails.warden' do |app|
           # When devise is used, it inserts a warden middlware. Multiple warden
           # middlewares do not work properly. Devise allows for a block to be
@@ -28,8 +35,8 @@ module Warden
           Rails.scopes.each do |scope, scope_config|
             config.scope_defaults scope, strategies: [:github],
                                          config: scope_config
-            config.serialize_from_session(scope) { |key| Verifier.load(key) }
-            config.serialize_into_session(scope) { |user| Verifier.dump(user) }
+            config.serialize_from_session(scope, &SERIALIZE_FROM_SESSION)
+            config.serialize_into_session(scope, &SERIALIZE_INTO_SESSION)
           end
         end
 

@@ -31,7 +31,8 @@ module Warden
           end
 
           def marshal_load(data)
-            @memberships, super_data = data
+            memberships, super_data = data
+            @memberships = memberships.symbolize_keys
             super(super_data)
           end
         end
