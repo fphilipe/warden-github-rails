@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+- Use new warden-github version that fixes a membership caching bug
+
 ## v1.2.3
 
 - Use custom session serialization for proper compatibility with mock users

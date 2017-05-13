@@ -86,7 +86,7 @@ describe 'controller helpers' do
         context 'when logged in' do
           it "returns the user's session" do
             github_login(scope)
-            expect(request.body).to eq({ foo: :bar }.to_json)
+            expect(request.body).to eq({ _memberships: {}, foo: :bar }.to_json)
           end
         end
       end

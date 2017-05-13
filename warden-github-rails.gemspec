@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'addressable', '~> 2.3'
   gem.add_development_dependency 'coveralls' if RUBY_ENGINE == 'ruby'
 
-  gem.add_dependency 'warden-github', '~> 1.1', '>= 1.1.1'
+  gem.add_dependency 'warden-github', '~> 1.3', '>= 1.3.2'
   gem.add_dependency 'railties', '>= 3.1'
 end

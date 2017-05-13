@@ -3,12 +3,14 @@ module Warden
     module Rails
       module TestHelpers
         class MockUser < User
-          attr_reader :memberships
-
           def initialize(*args)
             super
             @memberships = { team: [], org: [] }
           end
+
+          # Prevent the stubbed memberships from being overwritten by the hook
+          # that sets the memberships stored in the session.
+          def memberships=(val) end
 
           def stub_membership(args)
             args.each do |type, values|
