@@ -25,6 +25,7 @@ ENV['GITHUB_CLIENT_ID']     = 'test_client_id'
 ENV['GITHUB_CLIENT_SECRET'] = 'test_client_secret'
 
 RSpec.configure do |config|
+  config.example_status_persistence_file_path = 'spec/examples.txt'
   config.run_all_when_everything_filtered = true
   config.order = 'random'
   config.expect_with :rspec do |c|
