@@ -3,20 +3,13 @@ language: ruby
 cache: bundler
 script: bundle exec rspec
 rvm:
-  - 2.3.0
-  - ruby-head
-  - jruby
-  - rbx-2
+  - 2.4.1
 env:
-  global:
-    - JRUBY_OPTS="--2.0"
   matrix:
     - RAILS_VERSION=4
-    - RAILS_VERSION=5.beta
+    - RAILS_VERSION=5
     - RAILS_VERSION=master
 matrix:
   fast_finish: true
   allow_failures:
-    - env: RAILS_VERSION=5.beta
     - env: RAILS_VERSION=master
-    - rvm: ruby-head
