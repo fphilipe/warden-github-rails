@@ -21,8 +21,7 @@ gem "rails", rails_opts
 
 group :development do
   unless ENV['CI']
-    gem 'debugger',   platforms: :ruby_19, require: false
-    gem 'ruby-debug', platforms: :ruby_18, require: false
+    gem 'byebug', require: false
   end
 end
 
