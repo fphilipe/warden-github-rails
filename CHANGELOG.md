@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## v1.3.0
 
 - Use new warden-github version that fixes a membership caching bug
 
